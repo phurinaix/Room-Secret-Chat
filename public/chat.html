@@ -22,6 +22,8 @@
 
                 <input name="message" type="text" id="myText" placeholder="Message"  autofocus autocomplete="off"/><h1 id="final_span" hidden></h1>
 
+
+
                 <button>Send</button>
             </form>
 
@@ -33,7 +35,7 @@
 
     </div>
 
-    <script id="message-template" type="text/template">
+    <script id="message-template" type="text/template" >
         <li class="message">
             <div class="message__title">
                 <h4>{{from}}</h4>
@@ -41,9 +43,22 @@
             </div>
             <div class="message__body">
                 <p>{{text}}</p>
+
+
             </div>
         </li>
+
+          <input onclick="responsiveVoice.speak('ข้อความจาก'+'{{from}}'+'พูดว่า'+'{{text}}', 'Thai Male');" type="button" value="Play" />
+          <input onclick="responsiveVoice.cancel();" type="button" value="Stop" />
+
     </script>
+
+    <!-- <script>
+           if (!empty({{text}})) {
+           responsiveVoice.speak('ข้อความจาก'+'{{from}}'+'พูดว่า'+'{{text}}', 'Thai Male');
+
+         }
+     </script> -->
 
     <script id="location-message-template" type="text/template">
         <li class="message">
@@ -59,28 +74,33 @@
         </li>
     </script>
 
-<script>
 
+
+
+<script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+
+<script> if(responsiveVoice.isPlaying()) {
+  console.log("I hope you are listening");
+}
+</script>
+
+<script>
   //Welcome sound !!
   var msg = new SpeechSynthesisUtterance('สวัสดี, วันนี้ต้องการให้ช่วยอะไร?');
   msg.lang = 'th-TH';
   window.speechSynthesis.speak(msg);
-
   var final_transcript = '';
   var recognizing = false;
   var ignore_onend;
-
   if (!('webkitSpeechRecognition' in window)) {
     //if don't have a webkitSpeechRecognition
   } else {
       var recognition = new webkitSpeechRecognition();
       recognition.lang = "th-TH";
-
       recognition.onstart = function() {
         recognizing = true;
         start_img.src = 'mic-animate.gif';
       };
-
       recognition.onresult = function(event) {
         console.log(event)
         var interim_transcript = '';
@@ -96,7 +116,6 @@
         speak(final_transcript);
       }
   }
-
   function startButton(event) {
     if (recognizing) {
       recognition.stop();
@@ -107,7 +126,6 @@
     ignore_onend = false;
     start_img.src = 'mic-slash.gif';
   }
-
   recognition.onend = function() {
     recognizing = false;
     if (ignore_onend) {
@@ -115,16 +133,12 @@
     }
     start_img.src = 'mic.gif';
   };
-
-
   function speak(text) {
-
     //Hardcode becuz it's a tutorial. Got it?
     var msg_light = 'เปิดไฟหน้าบ้าน';
     var turnoffAllLight = 'ปิดไฟทั้งหมด'
     var whatsup = 'สบายดีไหม';
     var sawasdee = 'สวัสดี';
-
     //Text to speech
     var speechSynthesis = new SpeechSynthesisUtterance();
     speechSynthesis.voiceURI = 'native';
@@ -132,7 +146,6 @@
     speechSynthesis.rate = 1; // 0.1 to 10
     speechSynthesis.pitch = 2; //0 to 2
     speechSynthesis.lang = 'th-TH';
-
     var msg = '';
     //Do whatever you want.
     if(text.search(msg_light) != -1 || text.search(turnoffAllLight) != -1 ) {
@@ -148,7 +161,6 @@
       msg = 'คำสั่งดังกล่าวยังไม่มีในฐานข้อมูลค่ะ';
       speechSynthesis.text = msg;
     }
-
     window.speechSynthesis.speak(speechSynthesis);
     final_result.innerHTML = msg;
   }

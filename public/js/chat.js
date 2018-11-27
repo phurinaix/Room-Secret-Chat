@@ -54,7 +54,8 @@ socket.on('newMessage', function(message) {
     var html = Mustache.render(template, {
         text: message.text,
         from: message.from,
-        createdAt: formattedTime
+        createdAt: formattedTime,
+        speck: message.text
     });
 
     jQuery('#messages').append(html);
