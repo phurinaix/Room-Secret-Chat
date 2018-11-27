@@ -18,14 +18,22 @@ function scrollToBottom() {
 
 socket.on('connect', function() {
     var params = jQuery.deparam(window.location.search);
-    socket.emit('join', params, function (err) {
-        if (err) {
-            alert(err);
-            window.location.href = '/';
-        } else {
-            console.log('No error');
-        }
-    });
+    if (params.method === "join") {
+        socket.emit('join', params, function (err) {
+            if (err) {
+                alert(err);
+                window.location.href = '/join.html';
+            }
+        });
+    }
+    if (params.method === "create") {
+        socket.emit('create', params, function (err) {
+            if (err) {
+                alert(err);
+                window.location.href = '/join.html';
+            }
+        });
+    }
 });
 
 socket.on('disconnect', function() {

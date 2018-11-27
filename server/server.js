@@ -6,6 +6,7 @@ const socketIO = require('socket.io');
 const {generateMessage, generateLocationMessage} = require('./utils/message');
 const {isRealString} = require('./utils/validation');
 const {Users} = require('./utils/users');
+const {Rooms} = require('./utils/rooms');
 
 const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 5000;
@@ -13,6 +14,7 @@ var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
 var users = new Users();
+var rooms = new Rooms();
 
 app.use(express.static(publicPath));
 
@@ -21,7 +23,10 @@ io.on('connection', (socket) => {
 
     socket.on('join', (params, callback) => {
         if (!isRealString(params.name) || !isRealString(params.room)) {
-            return callback('Name and room name are required.')
+            return callback('Name and room name are required.');
+        }
+        if (!rooms.getRoomList().includes(params.room)) {
+            return callback('No room');
         }
         if (users.getUserList(params.room).includes(params.name)) {
             return callback('This name has already taken');
@@ -37,7 +42,22 @@ io.on('connection', (socket) => {
 
         callback();
     });
-
+    socket.on('create', (params, callback) => {
+        if (!isRealString(params.name) || !isRealString(params.room)) {
+            return callback('Name and room name are required.');
+        }
+        if (rooms.getRoomList().includes(params.room)) {
+            return callback('Already exist');
+        }
+        rooms.addRoom(params.room);
+        socket.join(params.room);
+        users.removeUser(socket.id);
+        users.addUser(socket.id, params.name, params.room);
+        io.to(params.room).emit('updateUserList', users.getUserList(params.room));
+        socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
+        socket.broadcast.to(params.room).emit('newMessage', generateMessage('Admin', `${params.name} has joined`));
+        callback();
+    });
     socket.on('createMessage', (message, callback) => {
         var user = users.getUser(socket.id);
 
@@ -46,7 +66,6 @@ io.on('connection', (socket) => {
         }
         callback();
     });
-
     socket.on('createLocationMessage', (coords) => {
         var user = users.getUser(socket.id);
 
@@ -54,11 +73,6 @@ io.on('connection', (socket) => {
             io.to(user.room).emit('newLocationMessage', generateLocationMessage(user.name, coords.latitude, coords.longitude));
         }
     });
-
-    socket.on('createEmail', (newEmail) => {
-        console.log('createEmail', newEmail);
-    });
-
     socket.on('disconnect', () => {
         var user = users.removeUser(socket.id);
 
