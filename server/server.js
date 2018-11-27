@@ -26,13 +26,6 @@ io.on('connection', (socket) => {
         if (users.getUserList(params.room).includes(params.name)) {
             return callback('This name has already taken');
         }
-        
-        var i;
-         for (i = 0; i < users.getUserList(params.room).length; i++) {
-            if (params.name == users.getUserList(params.room)[i]) {
-            return callback("this username "+ params.name +" same other username")
-            }
-          }
 
         socket.join(params.room);
         users.removeUser(socket.id);
