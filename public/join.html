@@ -39,24 +39,79 @@
             </div>
         </nav>
 
-        <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: #36393f !important;">
+        <div class="wrapper" style="margin: 90px auto 0 auto; transition: 0.4s;" id="choose">
+            <div class="row text-center justify-content-center">
+                <div class="card col-lg-4 m-5 bg-light">
+                    <div class="card-body bg-light">
+                        <h3 class="text-white message font-weight-bold">CREATE</h3>
+                        <p class="card-text">Create a new server and invite your friends. It's free!</p>
+                        <img src="img/server.svg" class="w-50">
+                        <br><br><br>
+                        <button type="submit" class="w-100 btn btn-info" id="create">Create a room</button>
+                    </div>
+                </div>
+
+                <div class="card col-lg-4 m-5 bg-light">
+                    <div class="card-body bg-light">
+                        <h3 class="text-white message font-weight-bold">JOIN</h3>
+                        <p class="card-text">Enter an Instant Invite and join your friend's room</p>
+                        <img src="img/device.svg" class="w-50">
+                        <br><br><br>
+                        <button type="submit" class="w-100 btn btn-info" id="join">Join a room</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: #36393f !important; transform: scale(0); transition: 0.2s;" id="form">
             <form action="/chat.html">
-                <div class="form-group">
+                <div class="form-group" id="join-text">
                     <h3 class="text-white message">Join a Chat</h3>
+                </div>
+                <div class="form-group" id="create-text">
+                    <h3 class="text-white message">Create a room</h3>
                 </div>
                 <br>
                 <div class="form-group">
-                    <label>Display Name</label>
+                    <label>Display name</label>
                     <input type="text" name="name" class="form-control" placeholder="What should everyone call you?" autofocus autocomplete="off" required/>
                 </div>
                 <div class="form-group">
-                    <label>Room Name</label>
+                    <label>Room name</label>
                     <input type="text" name="room" class="form-control" required/>
                 </div>
-                <!-- <div class="form-group"> -->
-                    <button class="w-100 btn btn-info">Join</button>
-                <!-- </div> -->
+                <div class="form-group" id="join-button">
+                    <button type="submit" class="w-100 btn btn-info">Join</button>
+                </div>
+                <div class="form-group" id="create-button">
+                    <button type="button" class="w-100 btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">
+                        Create a room
+                    </button>
+                </div>
             </form>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Create a room</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="">
+                                <input type="text" name="" id="">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -65,6 +120,31 @@
             document.getElementById("loader").style.display = "none";
             document.getElementsByClassName("container")[0].style.display = "block";
         }, 500);
+        
+        var form = document.getElementById("form");
+        var choose = document.getElementById("choose");
+        document.getElementById("create").addEventListener('click', function() {
+            choose.style.transform = 'scale(0)';
+            setTimeout(function() {
+                choose.style.display = 'none';
+                form.style.transform = 'scale(1)';
+            }, 400);
+            document.getElementById("join-button").style.display = 'none';
+            document.getElementById("join-text").style.display = 'none';
+        });
+        document.getElementById("join").addEventListener('click', function() {
+            choose.style.transform = 'scale(0)';
+            setTimeout(function() {
+                choose.style.display = 'none';
+                form.style.transform = 'scale(1)';
+            }, 400);
+            document.getElementById("create-button").style.display = 'none';
+            document.getElementById("create-text").style.display = 'none';
+        });
+        
     </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>
