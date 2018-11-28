@@ -30,6 +30,7 @@ socket.on('connect', function() {
         name: localStorage.getItem("name"),
         room: localStorage.getItem("room")
     };
+    jQuery("#room_name_title").html('Welcome to room: <span>' + params.room + '</span>');
     if (params.method === "join") {
         // localStorage.clear();
         socket.emit('join', params, function (err) {
@@ -71,7 +72,7 @@ socket.on('newMessage', function(message) {
         createdAt: formattedTime,
     });
     if(message.text && startVirtualAssistance){
-        responsiveVoice.speak("ข้อความจาก" + message.from + "พูดว่า" + message.text, 'Thai Female');
+        responsiveVoice.speak("ข้อความจาก" + message.from + "พูดว่า" + message.text, 'Thai Male');
     }
     jQuery('#messages').append(html);
     scrollToBottom();

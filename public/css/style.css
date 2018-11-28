@@ -7,6 +7,23 @@
     font-size: .95rem;
 }
 
+header {
+    display: flex;
+    background-color: #36393f;
+    height: 5vh;
+}
+
+h1 {
+    color: #fff;
+    text-align: center;
+    font-size: 1.3em;
+    margin: auto;
+}
+h1 span {
+    color: rgb(23, 182, 255);
+    font-size: inherit;
+}
+
 ul, li {
     list-style-position: inside;
 }
@@ -86,13 +103,8 @@ button:disabled {
 .chat__sidebar {
     overflow-y: scroll;
     width: 260px;
-    height: 100vh;
-    background: -moz-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* ff3.6+ */
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(49,84,129,1)), color-stop(100%, rgba(39,107,130,1))); /* safari4+,chrome */
-    background: -webkit-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* safari5.1+,chrome10+ */
-    background: -o-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* opera 11.10+ */
-    background: -ms-linear-gradient(125deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* ie10+ */
-    background: linear-gradient(325deg, rgba(39,107,130,1) 0%, rgba(49,84,129,1) 100%); /* w3c */
+    height: 95vh;
+    background-color: #36393f;
 }
 
 .chat__sidebar h3 {
@@ -116,7 +128,7 @@ button:disabled {
 .chat__main {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 95vh;
     width: 100%;
 }
 
