@@ -77,8 +77,13 @@ io.on('connection', (socket) => {
         var user = users.removeUser(socket.id);
 
         if (user) {
+            // var room = rooms.removeRoom(user.room);
+            var numberOfUser = (users.getUserList(user.room)).length;
             io.to(user.room).emit('updateUserList', users.getUserList(user.room));
             io.to(user.room).emit('newMessage', generateMessage('Admin', `${user.name} has left.`));
+            if (numberOfUser === 0) {
+                rooms.removeRoom(user.room);
+            }
         }
     });
 });

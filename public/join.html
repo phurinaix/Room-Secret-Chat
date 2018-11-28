@@ -63,76 +63,51 @@
             </div>
         </div>
 
-        <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: #36393f !important; transform: scale(0); transition: 0.2s;" id="join-form">
-            <form action="/chat.html">
+        <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: #36393f !important; display: none; transform: scale(0); transition: 0.2s;" id="join-form">
+            <form id="join-form">
                 <div class="form-group">
                     <h3 class="text-white message">Join a Chat</h3>
                 </div>
                 <br>
-                <input type="hidden" name="method" value="join">
                 <div class="form-group">
                     <label>Display name</label>
-                    <input type="text" name="name" class="form-control" placeholder="What should everyone call you?" autofocus autocomplete="off" required/>
+                    <input type="text" name="name" id="join-display-name" class="form-control" placeholder="What should everyone call you?" autofocus autocomplete="off" required/>
                 </div>
                 <div class="form-group">
                     <label>Room name</label>
-                    <input type="text" name="room" class="form-control" required/>
+                    <input type="text" name="room" id="join-room-name" class="form-control" required/>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="w-100 btn btn-info">Join</button>
+                    <button type="button" id="join-button" class="w-100 btn btn-info">Join</button>
                 </div>
             </form>
         </div>
 
-        <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: #36393f !important; transform: scale(0); transition: 0.2s;" id="create-form">
-            <form action="/chat.html">
+        <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: #36393f !important; display: none; transform: scale(0); transition: 0.2s;" id="create-form">
+            <form id="create-form">
                 <div class="form-group">
                     <h3 class="text-white message">Create a room</h3>
                 </div>
                 <br>
-                <input type="hidden" name="method" value="create">
                 <div class="form-group">
                     <label>Display name</label>
-                    <input type="text" name="name" class="form-control" placeholder="What should everyone call you?" autofocus autocomplete="off" required/>
+                    <input type="text" name="name" id="create-display-name" class="form-control" placeholder="What should everyone call you?" autofocus autocomplete="off" required/>
                 </div>
                 <div class="form-group">
                     <label>Room name</label>
-                    <input type="text" name="room" class="form-control" required/>
+                    <input type="text" name="room" id="create-room-name" class="form-control" required/>
                 </div>
                 <div class="form-group">
-                    <button class="w-100 btn btn-info">Create</button>
+                    <button type="button" id="create-button" class="w-100 btn btn-info">Create</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <script>
-        setTimeout(function(){
-            document.getElementById("loader").style.display = "none";
-            document.getElementsByClassName("container")[0].style.display = "block";
-        }, 500);
-        
-        var joinForm = document.getElementById("join-form");
-        var createForm = document.getElementById("create-form");
-        var choose = document.getElementById("choose");
-        document.getElementById("create").addEventListener('click', function() {
-            choose.style.transform = 'scale(0)';
-            setTimeout(function() {
-                choose.style.display = 'none';
-                createForm.style.transform = 'scale(1)';
-            }, 400);
-            joinForm.style.display = 'none';
-        });
-        document.getElementById("join").addEventListener('click', function() {
-            choose.style.transform = 'scale(0)';
-            setTimeout(function() {
-                choose.style.display = 'none';
-                joinForm.style.transform = 'scale(1)';
-            }, 400);
-        });
-    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="js/join.js"></script>
+
 </body>
 </html>

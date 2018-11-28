@@ -7,10 +7,13 @@
     <title>Chat App</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="chat">
-
+<body>
+    <header>
+        <!-- <h1>What</h1> -->
+    </header>
+    <div class="chat">
     <div class="chat__sidebar">
-        <h3>People</h3>
+        <h3>Online</h3>
         <div id="users"></div>
     </div>
 
@@ -19,20 +22,17 @@
 
         <div class="chat__footer">
             <form id="message-form">
-
                 <input name="message" type="text" id="myText" placeholder="Message"  autofocus autocomplete="off"/><h1 id="final_span" hidden></h1>
-
-
-
                 <button>Send</button>
             </form>
-
             <button id="send-location">Send location</button>
-
             <button id="start_button" onclick="startButton(event)">
-              <img id="start_img" src="mic.gif" alt="Start"></button>
+                <img id="start_img" src="mic.gif" alt="Start">
+            </button>
+            <button type="button" id="start-virtual-assistance">Start Virtual Assistance</button>
         </div>
 
+    </div>
     </div>
 
     <script id="message-template" type="text/template" >
@@ -44,21 +44,16 @@
             <div class="message__body">
                   <p>{{text}}</p>
                   <p id="final_result"></p>
-
-
-
             </div>
         </li>
     </script>
 
-
-
-    <!-- <script>
-           if (!empty({{text}})) {
+    <!-- <script> -->
+           <!-- if (!empty({{text}})) {
            responsiveVoice.speak('ข้อความจาก'+'{{from}}'+'พูดว่า'+'{{text}}', 'Thai Male');
 
-         }
-     </script> -->
+         } -->
+     <!-- </script> -->
 
     <script id="location-message-template" type="text/template">
         <li class="message">
@@ -73,16 +68,13 @@
             </div>
         </li>
     </script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
 
-
-
-
-<script src="https://code.responsivevoice.org/responsivevoice.js"></script>
-
-<script> if(responsiveVoice.isPlaying()) {
-  console.log("I hope you are listening");
-}
-</script>
+    <script>
+        if(responsiveVoice.isPlaying()) {
+            console.log("I hope you are listening");
+        }
+    </script>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/libs/jquery-3.3.1.min.js"></script>

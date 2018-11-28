@@ -1,4 +1,11 @@
 var socket = io();
+var startVirtualAssistanceButton = document.getElementById("start-virtual-assistance");
+var startVirtualAssistance = false;
+
+startVirtualAssistanceButton.addEventListener("click", function() {
+    startVirtualAssistance = !startVirtualAssistance;
+    console.log(startVirtualAssistance);
+});
 
 function scrollToBottom() {
     // Selectors
@@ -17,8 +24,14 @@ function scrollToBottom() {
 }
 
 socket.on('connect', function() {
-    var params = jQuery.deparam(window.location.search);
+    // var params = jQuery.deparam(window.location.search);
+    var params = {
+        method: localStorage.getItem("method"),
+        name: localStorage.getItem("name"),
+        room: localStorage.getItem("room")
+    };
     if (params.method === "join") {
+        // localStorage.clear();
         socket.emit('join', params, function (err) {
             if (err) {
                 alert(err);
@@ -27,6 +40,7 @@ socket.on('connect', function() {
         });
     }
     if (params.method === "create") {
+        // localStorage.clear();
         socket.emit('create', params, function (err) {
             if (err) {
                 alert(err);
@@ -41,11 +55,11 @@ socket.on('disconnect', function() {
 });
 
 socket.on('updateUserList', function(users) {
-    var ol = jQuery('<ol></ol>');
+    var ul = jQuery('<ul></ul>');
     users.forEach(function (user) {
-        ol.append(jQuery('<li></li>').text(user));
+        ul.append(jQuery('<li></li>').text(user));
     });
-    jQuery('#users').html(ol);
+    jQuery('#users').html(ul);
 });
 
 socket.on('newMessage', function(message) {
@@ -56,8 +70,8 @@ socket.on('newMessage', function(message) {
         from: message.from,
         createdAt: formattedTime,
     });
-    if(message.text){
-      responsiveVoice.speak("ข้อความจาก"+message.from+"พูดว่า"+message.text,'Thai Male');
+    if(message.text && startVirtualAssistance){
+        responsiveVoice.speak("ข้อความจาก" + message.from + "พูดว่า" + message.text, 'Thai Female');
     }
     jQuery('#messages').append(html);
     scrollToBottom();
@@ -217,10 +231,6 @@ locationButton.on('click', function () {
       responsiveVoice.speak(msg ,'Thai Female');
     }else {
       msg = 'บทสนทนาที่สามารถคุยกับbotchat ได้ มีดังนี้ '+msg_light+','+turnoffAllLight+','+whatsup+','+sawasdee+','+name+','+fan+','+web+','+web1+','+web2+','+webdetail;
-
-
-
-
     }
     window.speechSynthesis.speak(speechSynthesis);
     final_result.innerHTML = msg;

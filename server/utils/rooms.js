@@ -7,7 +7,7 @@ class Rooms {
         return name;
     }
     removeRoom (name) {
-        var room = this.getUser(name);
+        var room = this.getRoom(name);
 
         if (room) {
             this.rooms = this.rooms.filter((room) => room !== name);
