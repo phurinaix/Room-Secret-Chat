@@ -25,10 +25,11 @@ app.post('/create', (req, res) => {
     var data = {
         name: rawData.name,
         room: rawData.room,
+        password: rawData.password,
         method: 'create'
     }
     var encryptQueryString = base64Encode(ecr(data).toString());
-    if (data.name.length === 0 || data.room.length === 0) {
+    if (data.name.length === 0 || data.room.length === 0 || data.password.length === 0) {
         return res.redirect('/join.html?error=empty&method=create');
     }
     if (!isRealString(data.name) || !isRealString(data.room)) {
@@ -39,7 +40,10 @@ app.post('/create', (req, res) => {
     }
     if (rooms.getRoomList().includes(data.room)) {
         return res.redirect('/join.html?error=exist&method=create');
-    } 
+    }
+    if (data.password.length < 8) {
+        return res.redirect('/join.html?error=password&method=create');
+    }
     else {
         return res.redirect(`/chat.html?method=create&token=${encryptQueryString}`);
     }
@@ -49,10 +53,11 @@ app.post('/join', (req, res) => {
     var data = {
         name: rawData.name,
         room: rawData.room,
+        password: rawData.password,
         method: 'join'
     }
     var encryptQueryString = base64Encode(ecr(data).toString());
-    if (data.name.length === 0 || data.room.length === 0) {
+    if (data.name.length === 0 || data.room.length === 0 || data.password.length === 0) {
         return res.redirect('/join.html?error=empty&method=join');
     }
     if (!isRealString(data.name) || !isRealString(data.room)) {
@@ -66,6 +71,9 @@ app.post('/join', (req, res) => {
     }
     if (users.getUserList(data.room).includes(data.name)) {
         return res.redirect('/join.html?error=exist&method=join');
+    }
+    if (rooms.getRoom(data.room).password !== data.password) {
+        return res.redirect('/join.html?error=password&method=join');
     }
     else {
         return res.redirect(`/chat.html?method=join&token=${encryptQueryString}`);
@@ -114,7 +122,7 @@ io.on('connection', (socket) => {
                     console.log('hello');
                     return res.redirect('/join.html?error=exist&method=join');
                 }
-                rooms.addRoom(token.room);
+                rooms.addRoom(token.room, token.password);
                 socket.join(token.room);
                 users.removeUser(socket.id);
                 users.addUser(socket.id, token.name, token.room);

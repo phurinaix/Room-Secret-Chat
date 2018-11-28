@@ -6,10 +6,6 @@ setTimeout(function(){
 var joinForm = document.getElementById("join-form");
 var createForm = document.getElementById("create-form");
 var choose = document.getElementById("choose");
-var createDisplayName = document.getElementById("create-display-name");
-var createRoomName = document.getElementById("create-room-name");
-var joinDisplayName = document.getElementById("join-display-name");
-var joinRoomName = document.getElementById("join-room-name");
 
 document.getElementById("create").addEventListener('click', function() {
     choose.style.transform = 'scale(0)';
@@ -71,6 +67,11 @@ function alertError() {
             createAlertMessage.innerHTML = 'This Name or room name already exists';
             createAlertMessage.style.display = 'block';
         }
+        else if (error === 'password') {
+            setCreateBox();
+            createAlertMessage.innerHTML = 'Room password must contain at least 8 characters';
+            createAlertMessage.style.display = 'block';
+        }
         else {
             createAlertMessage.style.display = 'none';
         }
@@ -101,6 +102,11 @@ function alertError() {
             joinAlertMessage.innerHTML = 'This room does not exist';
             joinAlertMessage.style.display = 'block';
         }
+        else if (error === 'password') {
+            setJoinBox();
+            joinAlertMessage.innerHTML = 'Password incorrect!';
+            joinAlertMessage.style.display = 'block';
+        }
         else {
             console.log('error not show');
             joinAlertMessage.style.display = 'none';
@@ -109,21 +115,3 @@ function alertError() {
     console.log(error);
 }
 alertError();
-
-// document.getElementById("create-button").addEventListener("click", function() {
-//     if (createDisplayName.value.length && createRoomName.value.length) {
-//         localStorage.setItem('method', 'create');
-//         localStorage.setItem('name', createDisplayName.value);
-//         localStorage.setItem('room', createRoomName.value);
-//         window.location = 'chat.html';
-//     }
-// });
-// document.getElementById("join-button").addEventListener("click", function() {
-//     if (joinDisplayName.value.length && joinRoomName.value.length) {
-//         console.log('sdfdsf');
-//         localStorage.setItem('method', 'join');
-//         localStorage.setItem('name', joinDisplayName.value);
-//         localStorage.setItem('room', joinRoomName.value);
-//         window.location = 'chat.html';
-//     }
-// });

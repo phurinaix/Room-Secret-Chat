@@ -10,7 +10,7 @@ label {
 .custom-class:hover {
     border: 3px solid black;
 }
-input[type="text"] {
+input[type="text"], input[type="password"] {
     background-color: rgba(0,0,0,.1) !important;
     color: white !important;
 }
