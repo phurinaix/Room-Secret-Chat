@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <link rel="stylesheet" href="css/joinStyle.css">
 </head>
-<body>
+<body class="bg-dark">
         <div class="loader" id="loader">
                 <div class="line"></div>
                 <div class="line"></div>
@@ -40,6 +40,22 @@
                     </form>
                 </div>
             </nav>
+
+            <!-- <div class="row"> -->
+                <div class="col">
+                    <h1>Phurinat Puekkham</h1>
+                </div>
+                <div class="col">
+                    <h1>Akkara Raksasawat</h1>
+                </div>
+            <!-- </div> -->
         </div>
+
+        <script>
+            setTimeout(function(){
+                document.getElementById("loader").style.display = "none";
+                document.getElementsByClassName("container")[0].style.display = "block";
+            }, 500);
+        </script>
 </body>
 </html>

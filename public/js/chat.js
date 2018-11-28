@@ -1,11 +1,31 @@
 var socket = io();
 var startVirtualAssistanceButton = document.getElementById("start-virtual-assistance");
 var startVirtualAssistance = false;
+var typeVirtual = 'Thai Male';
 
 startVirtualAssistanceButton.addEventListener("change", function() {
     startVirtualAssistance = !startVirtualAssistance;
     console.log(startVirtualAssistance);
 });
+
+function changeVirtual(e) {
+    var type = e.options[e.selectedIndex].text;
+    console.log(typeof type);
+    console.log(type === 'Thai Female');
+    if (type === 'Thai Male') {
+        typeVirtual = 'Thai Male';
+    } else if (type === 'Thai Female') {
+        typeVirtual = 'Thai Female';
+    } else if (type === 'Eng Male') {
+        typeVirtual = 'US English Male';
+    } else if (type === 'Eng Female') {
+        typeVirtual = 'US English Female';
+    } else if (type === 'Japanese Male') {
+        typeVirtual = 'Japanese Male';
+    } else if (type === 'Japanese Female') {
+        typeVirtual = 'Japanese Female';
+    }
+}
 
 function scrollToBottom() {
     // Selectors
@@ -72,7 +92,13 @@ socket.on('newMessage', function(message) {
         createdAt: formattedTime,
     });
     if(message.text && startVirtualAssistance){
-        responsiveVoice.speak("ข้อความจาก" + message.from + "พูดว่า" + message.text, 'Thai Male');
+        if (typeVirtual === 'Thai Male' || typeVirtual === 'Thai Female') {
+            responsiveVoice.speak("ข้อความจาก" + message.from + "พูดว่า" + message.text, typeVirtual);
+        } else if (typeVirtual === 'US English Male' || typeVirtual === 'US English Female') {
+            responsiveVoice.speak("Message from" + message.from + "say" + message.text, typeVirtual);
+        } else if (typeVirtual === 'Japanese Male' || typeVirtual === 'Japanese Female') {
+            responsiveVoice.speak(message.from + message.text, typeVirtual);
+        }
     }
     jQuery('#messages').append(html);
     scrollToBottom();

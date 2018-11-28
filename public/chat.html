@@ -25,6 +25,19 @@
             <input type="checkbox" id="start-virtual-assistance">
             <span class="slider round"></span>
         </label>
+        <!-- <div class="custom-select" style="width:200px;"> -->
+        <br><br><hr><br>
+        <p>Select Virtual Assistant type</p>
+        <br>
+        <select onChange="changeVirtual(this);">
+            <option value="0">Thai Male</option>
+            <option value="1">Thai Female</option>
+            <option value="2">Eng Male</option>
+            <option value="3">Eng Female</option>
+            <option value="2">Japanese Male</option>
+            <option value="3">Japanese Female</option>
+        </select>
+        <!-- </div> -->
         <br><br><hr><br>
         <a href="index.html">Exit</a>
     </div>
@@ -84,13 +97,6 @@
             </div>
         </li>
     </script>
-
-    <!-- <script> -->
-           <!-- if (!empty({{text}})) {
-           responsiveVoice.speak('ข้อความจาก'+'{{from}}'+'พูดว่า'+'{{text}}', 'Thai Male');
-
-         } -->
-     <!-- </script> -->
 
     <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
 
