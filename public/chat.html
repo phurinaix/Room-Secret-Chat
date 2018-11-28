@@ -12,8 +12,26 @@
 <body>
     <header>
         <h1 id="room_name_title"></h1>
-        <h4><a href="index.html">Exit</a></h4>
+        <!-- <h4><a href="index.html">Exit</a></h4> -->
+        <h4><span onclick="openNav()">Settings</span></h4>
     </header>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h2>Settings</h2>
+        <br><hr><br>
+        <p>Use Virtual Assistant</p>
+        <br>
+        <label class="switch">
+            <input type="checkbox" id="start-virtual-assistance">
+            <span class="slider round"></span>
+        </label>
+        <br><br><hr><br>
+        <a href="index.html">Exit</a>
+    </div>
+          
+    <!-- Use any element to open the sidenav -->
+
+    <!-- <div id="main"> -->
     <div class="chat">
         <div class="chat__sidebar">
             <h3>ONLINE</h3>
@@ -32,11 +50,13 @@
                 <button id="start_button" onclick="startButton(event)" style="padding: 0;">
                     <img id="start_img" src="mic.gif" alt="Start" width="50%">
                 </button>
-                <button type="button" id="start-virtual-assistance">Start Virtual Assistance</button>
+                <!-- <button type="button" id="start-virtual-assistance">Start Virtual Assistance</button> -->
+                
             </div>
 
         </div>
     </div>
+    <!-- </div> -->
 
     <script id="message-template" type="text/template" >
         <li class="message">

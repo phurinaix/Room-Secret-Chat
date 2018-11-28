@@ -2,7 +2,7 @@ var socket = io();
 var startVirtualAssistanceButton = document.getElementById("start-virtual-assistance");
 var startVirtualAssistance = false;
 
-startVirtualAssistanceButton.addEventListener("click", function() {
+startVirtualAssistanceButton.addEventListener("change", function() {
     startVirtualAssistance = !startVirtualAssistance;
     console.log(startVirtualAssistance);
 });
@@ -119,6 +119,17 @@ locationButton.on('click', function () {
         alert('Unable to fetch locaion.');
     });
 });
+
+
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
 
 //speak sound
   var msg = new SpeechSynthesisUtterance('สวัสดี, วันนี้ต้องการให้ช่วยอะไร?');
