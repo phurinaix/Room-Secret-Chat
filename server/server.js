@@ -24,7 +24,7 @@ app.post('/create', (req, res) => {
     var rawData = JSON.parse(JSON.stringify(req.body));
     var data = {
         name: rawData.name,
-        room: rawData.room,
+        room: rawData.room.toLowerCase(),
         password: rawData.password,
         method: 'create'
     }
@@ -52,7 +52,7 @@ app.post('/join', (req, res) => {
     var rawData = JSON.parse(JSON.stringify(req.body));
     var data = {
         name: rawData.name,
-        room: rawData.room,
+        room: rawData.room.toLowerCase(),
         password: rawData.password,
         method: 'join'
     }
