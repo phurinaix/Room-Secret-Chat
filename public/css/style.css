@@ -19,6 +19,18 @@ h1 {
     font-size: 1.3em;
     margin: auto;
 }
+header h4 a {
+    float: right;
+    color: white;
+    margin: 0;
+    font-size: 1.2em;
+    text-decoration: none;
+    margin: 15px;
+}
+header h4 a:hover {
+    color: lightcoral;
+}
+
 h1 span {
     color: rgb(218, 218, 218);
     font-size: inherit;
@@ -211,6 +223,13 @@ button:disabled {
         font-size: 1rem;
     }
 
+    h1 {
+        font-size: 0.9em;
+    }
+    header h4 a {
+        margin: 10px;
+        font-size: 0.9em;
+    }
     .chat__sidebar {
         display: none;
     }
@@ -225,5 +244,8 @@ button:disabled {
 
     .chat__footer button {
         margin-right: 0px;
+    }
+    img {
+        width: 10%;
     }
 }
