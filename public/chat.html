@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Chat App</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -13,7 +15,7 @@
     </header>
     <div class="chat">
         <div class="chat__sidebar">
-            <h3>Online</h3>
+            <h3>ONLINE</h3>
             <div id="users"></div>
         </div>
 
@@ -26,8 +28,8 @@
                     <button>Send</button>
                 </form>
                 <button id="send-location">Send location</button>
-                <button id="start_button" onclick="startButton(event)">
-                    <img id="start_img" src="mic.gif" alt="Start">
+                <button id="start_button" onclick="startButton(event)" style="padding: 0;">
+                    <img id="start_img" src="mic.gif" alt="Start" width="50%">
                 </button>
                 <button type="button" id="start-virtual-assistance">Start Virtual Assistance</button>
             </div>

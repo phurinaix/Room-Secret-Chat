@@ -58,7 +58,7 @@ socket.on('disconnect', function() {
 socket.on('updateUserList', function(users) {
     var ul = jQuery('<ul></ul>');
     users.forEach(function (user) {
-        ul.append(jQuery('<li></li>').text(user));
+        ul.append(jQuery('<li></li>').html(user + '<i class="fa fa-circle" style="font-size:10px;float:right;color:#2ecc71;"></i>'));
     });
     jQuery('#users').html(ul);
 });
