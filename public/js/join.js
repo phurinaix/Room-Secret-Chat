@@ -85,6 +85,11 @@ function alertError() {
             joinAlertMessage.innerHTML = 'Name and room name must be a string';
             joinAlertMessage.style.display = 'block';
         }
+        else if (error === 'exist') {
+            setJoinBox();
+            joinAlertMessage.innerHTML = 'This name already taken';
+            joinAlertMessage.style.display = 'block';
+        }
         else if (error === 'alpha') {
             console.log(error + " " + method + "if");
             setJoinBox();

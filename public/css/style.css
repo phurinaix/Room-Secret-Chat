@@ -16,14 +16,14 @@ header {
 h1 {
     color: #fff;
     text-align: center;
-    font-size: 1.3em;
+    font-size: 1.1em;
     margin: auto;
 }
 header h4 span {
     float: right;
     color: white;
     margin: 0;
-    font-size: 1.2em;
+    font-size: 1.0em;
     text-decoration: none;
     margin: 15px;
     cursor: pointer;

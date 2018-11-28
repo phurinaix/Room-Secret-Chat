@@ -54,27 +54,21 @@ app.post('/join', (req, res) => {
     var encryptQueryString = base64Encode(ecr(data).toString());
     if (data.name.length === 0 || data.room.length === 0) {
         return res.redirect('/join.html?error=empty&method=join');
-        // res.end();
-
     }
     if (!isRealString(data.name) || !isRealString(data.room)) {
         return res.redirect('/join.html?error=string&method=join');
-        // res.end();
-
     }
     if (!isAlphanumeric(data.name) || !isAlphanumeric(data.room)) {
         return res.redirect('/join.html?error=alpha&method=join');
-        // res.end();
-
     }
     if (!rooms.getRoomList().includes(data.room)) {
         return res.redirect('/join.html?error=noroom&method=join');
-        // res.end();
-
+    }
+    if (users.getUserList(data.room).includes(data.name)) {
+        return res.redirect('/join.html?error=exist&method=join');
     }
     else {
         return res.redirect(`/chat.html?method=join&token=${encryptQueryString}`);
-        // res.end();
     }
 });
 
@@ -82,12 +76,12 @@ io.on('connection', (socket) => {
     console.log('New user connected');
 
     socket.on('join', (params, callback) => {
-        // if (users.getUserList(params.room).includes(params.name)) {
-        //     return callback('This name has already taken');
-        // }
         try {
             const token = dcr(base64Decode(params));
             if (token.method === 'join') {
+                if (users.getUserList(token.room).includes(token.name)) {
+                    return res.redirect('/join.html?error=exist&method=join');
+                }
                 socket.join(token.room);
                 users.removeUser(socket.id);
                 users.addUser(socket.id, token.name, token.room);
@@ -116,6 +110,10 @@ io.on('connection', (socket) => {
             const token = dcr(base64Decode(params));
             console.log(token);
             if (token.method === 'create') {
+                if (users.getUserList(token.room).includes(token.name)) {
+                    console.log('hello');
+                    return res.redirect('/join.html?error=exist&method=join');
+                }
                 rooms.addRoom(token.room);
                 socket.join(token.room);
                 users.removeUser(socket.id);
