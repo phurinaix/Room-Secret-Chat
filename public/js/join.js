@@ -1,7 +1,7 @@
 setTimeout(function(){
     document.getElementById("loader").style.display = "none";
     document.getElementsByClassName("container")[0].style.display = "block";
-}, 500);
+}, 1000);
 
 var joinForm = document.getElementById("join-form");
 var createForm = document.getElementById("create-form");
