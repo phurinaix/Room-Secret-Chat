@@ -56,12 +56,12 @@ function alertError() {
             createAlertMessage.innerHTML = 'Name and room name can not be empty';
             createAlertMessage.style.display = 'block';
         }
-        if (error === 'string') {
+        else if (error === 'string') {
             setCreateBox();
             createAlertMessage.innerHTML = 'Name and room name must be a string';
             createAlertMessage.style.display = 'block';
         }
-        if (error === 'alpha') {
+        else if (error === 'alpha') {
             setCreateBox();
             createAlertMessage.innerHTML = 'Name and room name must contain only Eng letters, numbers, or dashes.';
             createAlertMessage.style.display = 'block';
@@ -75,30 +75,29 @@ function alertError() {
             createAlertMessage.style.display = 'none';
         }
     } else if (method === 'join') {
-        // console.log(error + " " + method);
         if (error === 'empty') {
             setJoinBox();
             joinAlertMessage.innerHTML = 'Name and room name can not be empty';
             joinAlertMessage.style.display = 'block';
         }
-        if (error === 'string') {
+        else if (error === 'string') {
             setJoinBox();
             joinAlertMessage.innerHTML = 'Name and room name must be a string';
             joinAlertMessage.style.display = 'block';
         }
-        if (error === 'alpha') {
-        console.log(error + " " + method + "if");
-
+        else if (error === 'alpha') {
+            console.log(error + " " + method + "if");
             setJoinBox();
             joinAlertMessage.innerHTML = 'Name and room name must contain only Eng letters, numbers, or dashes.';
             joinAlertMessage.style.display = 'block';
         }
-        if (error === 'noroom') {
+        else if (error === 'noroom') {
             setJoinBox();
             joinAlertMessage.innerHTML = 'This room does not exist';
             joinAlertMessage.style.display = 'block';
         }
         else {
+            console.log('error not show');
             joinAlertMessage.style.display = 'none';
         }
     }

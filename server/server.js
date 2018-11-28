@@ -29,19 +29,19 @@ app.post('/create', (req, res) => {
     }
     var encryptQueryString = base64Encode(ecr(data).toString());
     if (data.name.length === 0 || data.room.length === 0) {
-        res.redirect('/join.html?error=empty&method=create');
+        return res.redirect('/join.html?error=empty&method=create');
     }
     if (!isRealString(data.name) || !isRealString(data.room)) {
-        res.redirect('/join.html?error=string&method=create');
+        return res.redirect('/join.html?error=string&method=create');
     }
     if (!isAlphanumeric(data.name) || !isAlphanumeric(data.room)) {
-        res.redirect('/join.html?error=alpha&method=create');
+        return res.redirect('/join.html?error=alpha&method=create');
     }
     if (rooms.getRoomList().includes(data.room)) {
-        res.redirect('/join.html?error=exist&method=create');
+        return res.redirect('/join.html?error=exist&method=create');
     } 
     else {
-        res.redirect(`/chat.html?method=create&token=${encryptQueryString}`);
+        return res.redirect(`/chat.html?method=create&token=${encryptQueryString}`);
     }
 });
 app.post('/join', (req, res) => {
@@ -53,28 +53,28 @@ app.post('/join', (req, res) => {
     }
     var encryptQueryString = base64Encode(ecr(data).toString());
     if (data.name.length === 0 || data.room.length === 0) {
-        res.redirect('/join.html?error=empty&method=join');
-        res.end();
+        return res.redirect('/join.html?error=empty&method=join');
+        // res.end();
 
     }
     if (!isRealString(data.name) || !isRealString(data.room)) {
-        res.redirect('/join.html?error=string&method=join');
-        res.end();
+        return res.redirect('/join.html?error=string&method=join');
+        // res.end();
 
     }
     if (!isAlphanumeric(data.name) || !isAlphanumeric(data.room)) {
-        res.redirect('/join.html?error=alpha&method=join');
-        res.end();
+        return res.redirect('/join.html?error=alpha&method=join');
+        // res.end();
 
     }
     if (!rooms.getRoomList().includes(data.room)) {
-        res.redirect('/join.html?error=noroom&method=join');
-        res.end();
+        return res.redirect('/join.html?error=noroom&method=join');
+        // res.end();
 
     }
     else {
-        res.redirect(`/chat.html?method=join&token=${encryptQueryString}`);
-        res.end();
+        return res.redirect(`/chat.html?method=join&token=${encryptQueryString}`);
+        // res.end();
     }
 });
 
