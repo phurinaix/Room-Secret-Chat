@@ -24,28 +24,28 @@ function scrollToBottom() {
 }
 
 socket.on('connect', function() {
-    // var params = jQuery.deparam(window.location.search);
-    var params = {
-        method: localStorage.getItem("method"),
-        name: localStorage.getItem("name"),
-        room: localStorage.getItem("room")
-    };
-    jQuery("#room_name_title").html('Welcome to room: <span>' + params.room + '</span>');
-    if (params.method === "join") {
-        // localStorage.clear();
-        socket.emit('join', params, function (err) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    const method = urlParams.get('method');
+    // jQuery("#room_name_title").html('Welcome to room: <span>' + token.room + '</span>');
+    console.log(token + "   " + method);
+    if (method === "join") {
+        socket.emit('join', token, function (room, err) {
             if (err) {
-                alert(err);
+                alert('Invalid user');
                 window.location.href = '/join.html';
+            } else {
+                jQuery("#room_name_title").html('Welcome to room: <span>' + room + '</span>');
             }
         });
     }
-    if (params.method === "create") {
-        // localStorage.clear();
-        socket.emit('create', params, function (err) {
+    if (method === "create") {
+        socket.emit('create', token, function (room, err) {
             if (err) {
-                alert(err);
+                alert('Invalid user');
                 window.location.href = '/join.html';
+            } else {
+                jQuery("#room_name_title").html('Welcome to room: <span>' + room + '</span>');
             }
         });
     }

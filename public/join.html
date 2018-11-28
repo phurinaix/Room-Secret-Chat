@@ -64,31 +64,35 @@
         </div>
 
         <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: #36393f !important; display: none; transform: scale(0); transition: 0.2s;" id="join-form">
-            <form id="join-form">
+            <form action="/join" id="join-form" method="POST">
                 <div class="form-group">
                     <h3 class="text-white message">Join a Chat</h3>
                 </div>
                 <br>
+                <div class="alert alert-danger" id="join-alert-error" style="font-size: 0.9em;" role="alert"></div>
                 <div class="form-group">
                     <label>Display name</label>
                     <input type="text" name="name" id="join-display-name" class="form-control" placeholder="What should everyone call you?" autofocus autocomplete="off" required/>
+                    <small id="emailHelp" class="form-text text-muted">Name must contain only Eng letters, numbers, or dashes.</small>
                 </div>
                 <div class="form-group">
                     <label>Room name</label>
                     <input type="text" name="room" id="join-room-name" class="form-control" required/>
+                    <small id="emailHelp" class="form-text text-muted">Room name must contain only Eng letters, numbers, or dashes.</small>
                 </div>
                 <div class="form-group">
-                    <button type="button" id="join-button" class="w-100 btn btn-info">Join</button>
+                    <button type="submit" id="join-button" class="w-100 btn btn-info">Join</button>
                 </div>
             </form>
         </div>
 
         <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: #36393f !important; display: none; transform: scale(0); transition: 0.2s;" id="create-form">
-            <form id="create-form">
+            <form action="/create" id="create-form" method="POST">
                 <div class="form-group">
                     <h3 class="text-white message">Create a room</h3>
                 </div>
                 <br>
+                <div class="alert alert-danger" id="create-alert-error" style="font-size: 0.9em;" role="alert"></div>
                 <div class="form-group">
                     <label>Display name</label>
                     <input type="text" name="name" id="create-display-name" class="form-control" placeholder="What should everyone call you?" autofocus autocomplete="off" required/>
@@ -98,7 +102,7 @@
                     <input type="text" name="room" id="create-room-name" class="form-control" required/>
                 </div>
                 <div class="form-group">
-                    <button type="button" id="create-button" class="w-100 btn btn-info">Create</button>
+                    <button type="submit" id="create-button" class="w-100 btn btn-info">Create</button>
                 </div>
             </form>
         </div>
