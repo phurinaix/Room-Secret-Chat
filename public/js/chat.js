@@ -5,13 +5,10 @@ var typeVirtual = 'Thai Male';
 
 startVirtualAssistanceButton.addEventListener("change", function() {
     startVirtualAssistance = !startVirtualAssistance;
-    console.log(startVirtualAssistance);
 });
 
 function changeVirtual(e) {
     var type = e.options[e.selectedIndex].text;
-    console.log(typeof type);
-    console.log(type === 'Thai Female');
     if (type === 'Thai Male') {
         typeVirtual = 'Thai Male';
     } else if (type === 'Thai Female') {
