@@ -2,10 +2,35 @@ var socket = io();
 var startVirtualAssistanceButton = document.getElementById("start-virtual-assistance");
 var startVirtualAssistance = false;
 var typeVirtual = 'Thai Male';
+var emojies = document.querySelectorAll('.emoji-char');
 
 startVirtualAssistanceButton.addEventListener("change", function() {
     startVirtualAssistance = !startVirtualAssistance;
 });
+
+$("#emoji").click(function(event) {
+    event.stopPropagation();
+    $("#emoji-set").show();
+    document.getElementById("emoji").style.display = 'flex';
+    let x = document.getElementById("emoji").getBoundingClientRect().left;
+    let y = document.getElementById("emoji").getBoundingClientRect().top;
+    document.getElementById("emoji-set").style.left = x + 'px';
+    document.getElementById("emoji-set").style.top = y + 'px';
+    document.getElementById("emoji-set").style.transform = 'translate(-290px, -290px)';
+});
+
+$("body").click(function() {
+    $("#emoji-set").hide();
+});
+$("#emoji-set").click(function(event) {
+    event.stopPropagation();
+});
+
+for(let i = 0;i < emojies.length; i++) {
+    emojies[i].addEventListener('click', function(event) {
+        document.getElementById("message_input").value += event.target.innerHTML;
+    });
+}
 
 function changeVirtual(e) {
     var type = e.options[e.selectedIndex].text;

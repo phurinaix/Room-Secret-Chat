@@ -19,18 +19,30 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <h2>Settings</h2>
         <br><hr><br>
+        <!-- setting1 -->
         <p>Use Virtual Assistant</p>
         <br>
         <label class="switch">
             <input type="checkbox" id="start-virtual-assistance">
             <span class="slider round"></span>
         </label>
-        <!-- <div class="custom-select" style="width:200px;"> -->
         <br><br><hr><br>
+        <!-- setting2 -->
         <p>Select Virtual Assistant type</p>
         <br>
         <select onChange="changeVirtual(this);">
             <option value="0">Thai Male</option>
+            <option value="1">Thai Female</option>
+            <option value="2">Eng Male</option>
+            <option value="3">Eng Female</option>
+            <option value="2">Japanese Male</option>
+            <option value="3">Japanese Female</option>
+        </select>
+        <br><br><hr><br>
+        <p>Theme</p>
+        <br>
+        <select onChange="changeTheme(this);">
+            <option value="0">White</option>
             <option value="1">Thai Female</option>
             <option value="2">Eng Male</option>
             <option value="3">Eng Female</option>
@@ -52,7 +64,8 @@
 
             <div class="chat__footer">
                 <form id="message-form">
-                    <input name="message" type="text" id="myText" placeholder="Message"  autofocus autocomplete="off"/><h1 id="final_span" hidden></h1>
+                    <input name="message" type="text" id="message_input" placeholder="Message"  autofocus autocomplete="off"/><h1 id="final_span" hidden></h1>
+                    <button type="button" id="emoji">😃</button>
                     <button>Send</button>
                 </form>
                 <button id="send-location">Send location</button>
@@ -60,7 +73,26 @@
                     <img id="start_img" src="mic.gif" alt="Start" width="50%">
                 </button>
             </div>
+        </div>
 
+        <div id="emoji-set">
+            <span class="emoji-char">😁</span>
+            <span class="emoji-char">😂</span>
+            <span class="emoji-char">😃</span>
+            <span class="emoji-char">😄</span>
+            <span class="emoji-char">😅</span>
+            <span class="emoji-char">😆</span>
+            <span class="emoji-char">😉</span>
+            <span class="emoji-char">😊</span>
+            
+            <span class="emoji-char">😋</span>
+            <span class="emoji-char">😌</span>
+            <span class="emoji-char">😍</span>
+            <span class="emoji-char">😏</span>
+            <span class="emoji-char">😒</span>
+            <span class="emoji-char">😓</span>
+            <span class="emoji-char">😔</span>
+            <span class="emoji-char">😖</span>
         </div>
     </div>
 
