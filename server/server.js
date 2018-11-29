@@ -79,6 +79,15 @@ app.post('/join', (req, res) => {
         return res.redirect(`/chat.html?method=join&token=${encryptQueryString}`);
     }
 });
+app.get('/admin', (req, res) => {
+    var numberOfUser = 0;
+    rooms.getRoomList().forEach(room => {
+        numberOfUser += users.getUserList(room).length;
+    });
+    res.send(`<h2>Number of user = ${numberOfUser}</h2>
+            <h2>Number of rooms = ${rooms.getRoomList().length}</h2>
+    `);
+});
 
 io.on('connection', (socket) => {
     console.log('New user connected');
