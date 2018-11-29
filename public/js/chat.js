@@ -21,8 +21,16 @@ $("#emoji").click(function(event) {
 
 $("body").click(function() {
     $("#emoji-set").hide();
+    document.getElementById("invite-modal").style.transform = 'translate(-50%, -50%) scale(0)';
 });
 $("#emoji-set").click(function(event) {
+    event.stopPropagation();
+});
+$("#invite").click(function(event){
+    event.stopPropagation();
+    document.getElementById("invite-modal").style.transform = 'translate(-50%, -50%) scale(1)';
+});
+$("#invite-modal").click(function(event) {
     event.stopPropagation();
 });
 

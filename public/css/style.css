@@ -16,7 +16,7 @@ header {
 h1 {
     color: #fff;
     text-align: center;
-    font-size: 1.1em;
+    font-size: 1.0em;
     margin: auto;
 }
 header h4 span {
@@ -70,6 +70,37 @@ button:disabled {
     background: #698ea5;
 }
 
+.invite-button {
+    display: block;
+    margin: 0 auto;
+    background: #474a52;
+    border: 1px solid rgba(0,0,0,.6);
+    width: 90%;
+    user-select: none;
+    outline: 0;
+}
+.invite-button:hover {
+    border: 1px solid rgba(0,0,0,.6);
+    background: rgb(92, 92, 92);
+}
+
+#invite-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 0.2s !important;
+    width: 350px;
+    height: 200px;
+    background-color: #434549;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 20px;
+    /* background-color: #222327; */
+}
+#invite-modal h3{
+    color: #fff;
+}
 .centered-form {
     display: flex;
     align-items: center;
