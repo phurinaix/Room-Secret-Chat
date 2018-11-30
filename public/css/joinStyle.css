@@ -64,12 +64,12 @@ input[type="text"], input[type="password"] {
     color: white;
 }
 .message {
-    /* text-shadow:
+    text-shadow:
     2px 2px 0 #000,
     -1px -1px 0 #000,  
     1px -1px 0 #000,
     -1px 1px 0 #000,
-    1px 1px 0 #000; */
+    1px 1px 0 #000;
 }
 .loader {
     position: absolute;
