@@ -1,14 +1,18 @@
-.logo {
+.logo, h1{
     font-family: 'Righteous', cursive;
+}
+h1 {
+    font-size: 3em;
+    color: white;
 }
 label {
     color: #b9bbbe !important;
 }
 .custom-class {
-    border: 3px solid black;
+    /* border: 3px solid black; */
 }
 .custom-class:hover {
-    border: 3px solid black;
+    /* border: 3px solid black; */
 }
 input[type="text"], input[type="password"] {
     background-color: rgba(0,0,0,.1) !important;
@@ -60,12 +64,12 @@ input[type="text"], input[type="password"] {
     color: white;
 }
 .message {
-    text-shadow:
+    /* text-shadow:
     2px 2px 0 #000,
     -1px -1px 0 #000,  
     1px -1px 0 #000,
     -1px 1px 0 #000,
-    1px 1px 0 #000;
+    1px 1px 0 #000; */
 }
 .loader {
     position: absolute;
