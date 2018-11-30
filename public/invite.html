@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link rel="stylesheet" href="css/joinStyle.css">    
+</head>
+<body class="bg-dark">
+    <div class="loader" id="loader">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <div class="container" style="display: none;">
+
+        <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: #36393f !important;" id="invite-join-form">
+            <form action="/invite" id="join-form" method="POST">
+                <div class="form-group">
+                    <h3 class="text-white message">Join a Chat</h3>
+                </div>
+                <br>
+                <div class="alert alert-danger" id="join-alert-error" style="font-size: 0.9em;" role="alert"></div>
+                <div class="form-group">
+                    <label>Display name</label>
+                    <input type="text" name="name" class="form-control" placeholder="What should everyone call you?" autofocus autocomplete="off" required/>
+                    <small class="form-text text-muted">Name must contain only Eng letters, numbers, or dashes.</small>
+                </div>
+                <div class="form-group">
+                    <button type="submit" id="join-button" class="w-100 btn btn-info">Join</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(function(){
+            document.getElementById("loader").style.display = "none";
+            document.getElementsByClassName("container")[0].style.display = "block";
+        }, 1000);
+
+        const joinAlertMessage = document.querySelector('#join-alert-error');
+        joinAlertMessage.style.display = 'none';
+
+        function alertError() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+            const method = urlParams.get('method');
+            if (method === 'create') {
+                if (error === 'empty') {
+                    setCreateBox();
+                    createAlertMessage.innerHTML = 'Name and room name can not be empty';
+                    createAlertMessage.style.display = 'block';
+                }
+                else if (error === 'string') {
+                    setCreateBox();
+                    createAlertMessage.innerHTML = 'Name and room name must be a string';
+                    createAlertMessage.style.display = 'block';
+                }
+                else if (error === 'alpha') {
+                    setCreateBox();
+                    createAlertMessage.innerHTML = 'Name and room name must contain only Eng letters, numbers, or dashes.';
+                    createAlertMessage.style.display = 'block';
+                }
+                else if (error === 'exist') {
+                    setCreateBox();
+                    createAlertMessage.innerHTML = 'This Name or room name already exists';
+                    createAlertMessage.style.display = 'block';
+                }
+                else if (error === 'password') {
+                    setCreateBox();
+                    createAlertMessage.innerHTML = 'Room password must contain at least 8 characters';
+                    createAlertMessage.style.display = 'block';
+                }
+                else {
+                    createAlertMessage.style.display = 'none';
+                }
+            }
+        }
+        alertError();
+    </script>
+
+</body>
+</html>

@@ -90,7 +90,7 @@ button:disabled {
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
     transition: 0.2s !important;
-    width: 350px;
+    width: 400px;
     height: 200px;
     background-color: #434549;
     border-radius: 5px;
@@ -98,9 +98,37 @@ button:disabled {
     padding: 20px;
     /* background-color: #222327; */
 }
-#invite-modal h3{
+#invite-modal h2{
     color: #fff;
 }
+#invite-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    text-decoration: none;
+}
+#invite-modal p {
+    color: #b9bbbe;
+}
+#invite-modal input {
+    background-color: rgba(0,0,0,.1);
+    border: 1px solid rgba(0,0,0,.3);
+    padding: 10px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 5px;
+    color: #f6f6f7;
+}
+#invite-modal button {
+    outline: 0;
+    user-select: none;
+    background-color: #2a2929;
+}
+#invite-modal button:hover {
+    background-color: #344564;
+}
+
 .centered-form {
     display: flex;
     align-items: center;
