@@ -217,7 +217,7 @@ function closeNav() {
           }
         }
         final_span.innerHTML = final_transcript;
-        document.getElementById("myText").value = final_span.innerHTML;
+        document.getElementById("message_input").value = final_span.innerHTML;
         speak(final_transcript);
       }
   }

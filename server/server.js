@@ -88,6 +88,9 @@ app.get('/admin', (req, res) => {
             <h2>Number of rooms = ${rooms.getRoomList().length}</h2>
     `);
 });
+app.get('*', (req, res) => {
+    return res.redirect('/404.html');
+});
 
 io.on('connection', (socket) => {
     console.log('New user connected');
