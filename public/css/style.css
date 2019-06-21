@@ -197,6 +197,7 @@ button:disabled {
     flex-wrap: wrap;
     user-select: none;
     outline: none;
+    overflow: scroll;
 }
 #emoji-set span {
     font-size: 2em;
@@ -295,7 +296,12 @@ button:disabled {
     list-style-type: none;
     padding: 10px;
 }
-
+.message__body p {
+    background-color: #4de8e0;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 10px;
+}
 .message {
     padding: 10px;
 }

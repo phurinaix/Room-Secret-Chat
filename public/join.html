@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="css/joinStyle.css">    
 </head>
 <body class="bg-dark">
+    <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+    </ul>
     <div class="loader" id="loader">
         <div class="line"></div>
         <div class="line"></div>
@@ -62,7 +74,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: #36393f !important; display: none; transform: scale(0); transition: 0.2s;" id="join-form">
+        <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: rgb(90, 23, 3) !important; display: none; transform: scale(0); transition: 0.2s;" id="join-form">
             <form action="/join" id="join-form" method="POST">
                 <div class="form-group">
                     <h3 class="text-white message">Join a Chat</h3>
@@ -89,7 +101,7 @@
             </form>
         </div>
 
-        <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: #36393f !important; display: none; transform: scale(0); transition: 0.2s;" id="create-form">
+        <div class="col-lg-4 p-4 border border-info" style="margin: 100px auto 0 auto; background-color: rgb(90, 23, 3) !important; display: none; transform: scale(0); transition: 0.2s;" id="create-form">
             <form action="/create" id="create-form" method="POST">
                 <div class="form-group">
                     <h3 class="text-white message">Create a room</h3>
